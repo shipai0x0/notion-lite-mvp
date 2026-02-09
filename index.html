@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Notion Lite Generator</title>
+    <title>NotionLite | Turn Notion Pages into Websites</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Customize Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        cta: '#F97316',
+                        background: '#F8FAFC',
+                        text: '#1E293B',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Notion Lite Generator</h1>
-    <input id='pageId' placeholder='Enter Notion Page ID'>
-    <button onclick='generate()'>Generate Site</button>
-    <div id='result'></div>
+<body class="bg-background text-text font-inter min-h-screen flex flex-col">
+    <header class="container mx-auto px-4 py-6">
+        <div class="text-2xl font-bold text-primary">NotionLite</div>
+    </header>
+    
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-5xl font-bold mb-4 leading-tight">Turn Notion Pages into Websites</h1>
+            <p class="text-xl text-gray-600 mb-8">Free, fast, no-code. Just paste your public link.</p>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <input 
+                    id="pageId" 
+                    class="border border-gray-300 p-4 w-full rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition" 
+                    placeholder="Paste Notion Page ID..."
+                >
+                <button 
+                    onclick="generate()" 
+                    class="bg-cta text-white font-bold py-3 px-6 rounded-lg w-full hover:bg-orange-600 transition duration-300"
+                >
+                    Generate Site
+                </button>
+            </div>
+            
+            <div id="result" class="mt-8"></div>
+        </div>
+    </main>
+    
+    <footer class="container mx-auto px-4 py-6 text-center text-gray-500">
+        <p>Simple & Clean</p>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>

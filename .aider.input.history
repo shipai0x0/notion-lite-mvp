@@ -1,0 +1,38 @@
+
+# 2026-02-09 09:08:54.407984
++Redesign index.html and style.css using Tailwind CSS (CDN) based on this Design System:
++- Style: Minimalism & Swiss Style (Clean, spacious, grid-based).
++- Colors: Primary #2563EB, CTA #F97316, Background #F8FAFC, Text #1E293B.
++- Typography: Inter (Google Fonts).
++- Layout: Single Column Hero (Headline, Subhead, Input Field, Generate Button).
++- Effects: Subtle hover, smooth transitions.
++- Structure:
++  <header>Logo 'NotionLite'</header>
++  <main>
++    <h1 class='text-5xl font-bold mb-4'>Turn Notion Pages into Websites</h1>
++    <p class='text-xl text-gray-600 mb-8'>Free, fast, no-code. Just paste your public link.</p>
++    <div class='card shadow-xl p-8 bg-white rounded-2xl'>
++      <input class='border p-4 w-full rounded-lg mb-4' placeholder='Paste Notion Page ID...'>
++      <button class='bg-orange-500 text-white font-bold py-3 px-6 rounded-lg w-full hover:bg-orange-600 transition'>Generate Site</button>
++    </div>
++  </main>
++  <footer>Simple & Clean</footer>
+
+# 2026-02-09 09:08:54.408142
++Redesign index.html and style.css using Tailwind CSS (CDN) based on this Design System:
++- Style: Minimalism & Swiss Style (Clean, spacious, grid-based).
++- Colors: Primary #2563EB, CTA #F97316, Background #F8FAFC, Text #1E293B.
++- Typography: Inter (Google Fonts).
++- Layout: Single Column Hero (Headline, Subhead, Input Field, Generate Button).
++- Effects: Subtle hover, smooth transitions.
++- Structure:
++  <header>Logo 'NotionLite'</header>
++  <main>
++    <h1 class='text-5xl font-bold mb-4'>Turn Notion Pages into Websites</h1>
++    <p class='text-xl text-gray-600 mb-8'>Free, fast, no-code. Just paste your public link.</p>
++    <div class='card shadow-xl p-8 bg-white rounded-2xl'>
++      <input class='border p-4 w-full rounded-lg mb-4' placeholder='Paste Notion Page ID...'>
++      <button class='bg-orange-500 text-white font-bold py-3 px-6 rounded-lg w-full hover:bg-orange-600 transition'>Generate Site</button>
++    </div>
++  </main>
++  <footer>Simple & Clean</footer>
