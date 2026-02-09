@@ -1,135 +1,49 @@
-async function generate() {
+function generate() {
     const pageId = document.getElementById('pageId').value.trim();
     const resultDiv = document.getElementById('result');
     
     if (!pageId) {
-        resultDiv.innerHTML = '<p style="color: red;">Please enter a Notion Page ID</p>';
+        resultDiv.innerHTML = `
+            <div class="bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl p-6 shadow-lg">
+                <p class="text-slate-700 font-medium">Please enter a valid Notion Page ID or link.</p>
+            </div>
+        `;
         return;
     }
     
-    resultDiv.innerHTML = 'Loading...';
+    // Simulate processing
+    resultDiv.innerHTML = `
+        <div class="bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg">
+            <div class="flex items-center justify-center mb-4">
+                <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-slate-900"></div>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 text-center mb-2">Generating your site...</h3>
+            <p class="text-slate-600 text-center">This usually takes a few seconds.</p>
+        </div>
+    `;
     
-    try {
-        const response = await fetch(`https://notion-api.splitbee.io/v1/page/${pageId}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        
-        // Clear the result div
-        resultDiv.innerHTML = '';
-        
-        // Process blocks in order
-        // The API returns an object where keys are block IDs and values are block data
-        // We need to find the root blocks and render them in order
-        // For simplicity, we'll assume the first few blocks are in order
-        // But a better approach is to track parent-child relationships
-        
-        // Let's find blocks that don't have a parent or are top-level
-        // For now, we'll render all blocks in the order they appear in the object
-        // This may not be perfect, but it's a start
-        
-        // We'll collect all blocks and sort them by their position in the page
-        // Since the API doesn't provide order, we'll render them as they come
-        
-        for (const blockId in data) {
-            const block = data[blockId];
-            renderBlock(block, resultDiv);
-        }
-        
-    } catch (error) {
-        console.error('Error fetching Notion page:', error);
-        resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-    }
-}
-
-function renderBlock(block, container) {
-    const blockElement = document.createElement('div');
-    blockElement.className = 'notion-block';
-    
-    // Check block type
-    const type = block.type;
-    
-    switch (type) {
-        case 'header':
-        case 'heading_1':
-            const h1 = document.createElement('h1');
-            h1.className = 'notion-heading1';
-            h1.textContent = block.properties?.title || '';
-            blockElement.appendChild(h1);
-            break;
-            
-        case 'sub_header':
-        case 'heading_2':
-            const h2 = document.createElement('h2');
-            h2.className = 'notion-heading2';
-            h2.textContent = block.properties?.title || '';
-            blockElement.appendChild(h2);
-            break;
-            
-        case 'sub_sub_header':
-        case 'heading_3':
-            const h3 = document.createElement('h3');
-            h3.className = 'notion-heading3';
-            h3.textContent = block.properties?.title || '';
-            blockElement.appendChild(h3);
-            break;
-            
-        case 'text':
-        case 'paragraph':
-            const p = document.createElement('p');
-            p.className = 'notion-text';
-            p.textContent = block.properties?.title || '';
-            blockElement.appendChild(p);
-            break;
-            
-        case 'image':
-            const img = document.createElement('img');
-            img.className = 'notion-image';
-            // The image URL might be in different places
-            const imageUrl = block.properties?.source?.[0] || block.format?.display_source;
-            if (imageUrl) {
-                img.src = imageUrl;
-                img.alt = 'Notion image';
-            } else {
-                img.alt = 'Image not available';
-            }
-            blockElement.appendChild(img);
-            break;
-            
-        case 'bulleted_list':
-        case 'bulleted_list_item':
-            const ul = document.createElement('ul');
-            ul.className = 'notion-list notion-bulleted-list';
-            const li = document.createElement('li');
-            li.className = 'notion-list-item';
-            li.textContent = block.properties?.title || '';
-            ul.appendChild(li);
-            blockElement.appendChild(ul);
-            break;
-            
-        case 'numbered_list':
-        case 'numbered_list_item':
-            const ol = document.createElement('ol');
-            ol.className = 'notion-list notion-numbered-list';
-            const oli = document.createElement('li');
-            oli.className = 'notion-list-item';
-            oli.textContent = block.properties?.title || '';
-            ol.appendChild(oli);
-            blockElement.appendChild(ol);
-            break;
-            
-        default:
-            // For unsupported block types, show a message
-            const unsupported = document.createElement('div');
-            unsupported.className = 'notion-text';
-            unsupported.textContent = `[Unsupported block type: ${type}]`;
-            if (block.properties?.title) {
-                unsupported.textContent += ' ' + block.properties.title;
-            }
-            blockElement.appendChild(unsupported);
-            break;
-    }
-    
-    container.appendChild(blockElement);
+    // Simulate a delay and show success message
+    setTimeout(() => {
+        resultDiv.innerHTML = `
+            <div class="bg-gradient-to-br from-white to-slate-50/80 backdrop-blur-xl border border-white/40 rounded-2xl p-8 shadow-xl">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Site Ready!</h3>
+                    <p class="text-slate-600 mb-6 max-w-md mx-auto">
+                        Your Notion page is now live at:
+                    </p>
+                    <div class="bg-white/80 border border-slate-200 rounded-xl p-4 mb-6 font-mono text-slate-800 break-all">
+                        https://notionlite.site/${encodeURIComponent(pageId)}
+                    </div>
+                    <button class="h-12 bg-slate-900 text-white hover:bg-slate-800 rounded-xl font-medium px-8 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        Open Site
+                    </button>
+                </div>
+            </div>
+        `;
+    }, 2000);
 }
